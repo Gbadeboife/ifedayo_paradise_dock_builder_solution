@@ -40,8 +40,13 @@
 ## Dock Data
 
 - **Dock Data** is the collection of all the docks information
-  - docks is as follows: {
-    itemName: activeDockCategory (ROLL-IN, FLOATING, SECTIONAL, WEDGES, RAMPS, BOAT LIFTS (2 CYLINDER), BOAT LIFTS (4 CYLINDER), ACCESSORIES)
+
+  - docks is as follows: >
+
+  ```
+  {
+    itemName: activeDockCategory -> (ROLL-IN, FLOATING, SECTIONAL, WEDGES, RAMPS, BOAT LIFTS (2 CYLINDER), BOAT LIFTS (4 CYLINDER), ACCESSORIES),
+
     image: dock?.image,
     category: category,
     length: dock?.length,
@@ -55,6 +60,8 @@
     thumbnail: dock?.thumbnail,
     weight_capacity: dock?.weight_capacity
     };
+  ```
+
   - this information is to be attached to every dock that is added into the canvas editor as `dockData`
 
 #### The Issues Are Listed Below
