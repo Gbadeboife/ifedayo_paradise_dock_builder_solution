@@ -1,0 +1,1 @@
+export { SidebarFoot } from './SidebarFoot'

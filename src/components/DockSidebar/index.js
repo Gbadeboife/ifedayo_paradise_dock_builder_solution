@@ -1,0 +1,1 @@
+export { DockSidebar } from './DockSidebar'
