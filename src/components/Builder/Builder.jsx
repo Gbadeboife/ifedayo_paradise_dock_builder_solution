@@ -72,7 +72,6 @@ export const Builder = ({ editor }) => {
     let category;
     if (["wedges", "ramps"].includes(dock?.type)) {
       imageTopViewURL = (dock?.top_view).replace("%20", "+");
-
       materials = getWedgesAndRampsMaterial(dock?.material);
     } else {
       imageTopViewURL = dock?.top_view;
@@ -103,13 +102,24 @@ export const Builder = ({ editor }) => {
       weight_capacity: dock?.weight_capacity
     };
 
-    // TODO: Add dock to editor
-    // TODO: object which is the image should have the dockData, snapAngle of 45, snapThreshold of 5
-    // TODO: image should be scaled down by scaleFactor
-    // TODO: image should be positioned at the top left of the editor
-    // TODO: image should be added to the editor
-    // TODO: render the editor
-  }, []);
+    // Add dock to editor as a fabric image
+    fabric.Image.fromURL(imageTopViewURL, function(img) {
+      img.set({
+        left: 10,
+        top: 10,
+        scaleX: scaleFactor,
+        scaleY: scaleFactor,
+        snapAngle: 45,
+        snapThreshold: 5,
+        dockData: dockData,
+        selectable: true,
+        hasControls: true,
+      });
+      editor.add(img);
+      editor.setActiveObject(img);
+      editor.renderAll();
+    }, { crossOrigin: 'anonymous' });
+  }, [editor, activeDockCategory]);
 
   const getItems = useCallback((table) => {
     // console.log( category, materials );
