@@ -511,9 +511,15 @@ export const DockBuilder = () => {
     // TODO: after printing, the background image and background color should be restored
   }, [editorMemo]);
 
-  const CopySelection = () => {
-    // TODO: Copy selection
-  };
+
+  const CopySelection = useCallback(() => {
+    if (!editorMemo) return;
+    
+    const activeObject = editorMemo.getActiveObject();
+    if (activeObject) {
+      clipboard = activeObject.toJSON(['dockData', 'snapClone']);
+    }
+  }, [editorMemo]);
 
   const PasteSelection = () => {
     // TODO: Paste selection
